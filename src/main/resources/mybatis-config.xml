@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <!-- 不做缓存 -->
+        <setting name="cacheEnabled" value="false"/>
+    </settings>
+    <!-- 环境 dev prod 等 -->
+    <environments default="dev">
+        <!-- 一个environment 代表一个数据库环境 -->
+        <environment id="dev">
+            <!-- 配置事务管理器类型 为JDBC  -->
+            <transactionManager type="jdbc"/>
+            <!-- 配置数据库连接池 -->
+            <dataSource type="unpooled">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://14.18.43.48:3306/jdbc"/>
+                <property name="username" value="root"/>
+                <property name="password" value="KHwl20170731!@#"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/EmployeeMapper.xml"/>
+    </mappers>
+
+</configuration>
