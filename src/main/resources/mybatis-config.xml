@@ -11,7 +11,8 @@
         <!-- 可通过别名配置日志 或者 配置自定义日志实现，日志实现原理见 org.apache.ibatis.logging.LogFactory -->
         <!-- 见README.md -->
         <!--<setting name="logImpl" value="JDK_LOGGING"/>-->
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="logImpl" value="com.bing.lan.mybatis.customLog.MyJdkLoggingImpl"/>
     </settings>
     <!-- 环境 dev prod 等 -->
     <environments default="dev">
