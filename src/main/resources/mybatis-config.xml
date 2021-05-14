@@ -13,6 +13,8 @@
         <!--<setting name="logImpl" value="JDK_LOGGING"/>-->
         <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
         <!--<setting name="logImpl" value="com.bing.lan.mybatis.customLog.MyJdkLoggingImpl"/>-->
+        <setting name="defaultScriptingLanguage"
+                 value="com.bing.lan.mybatis.printSql.MyXMLLanguageDriver"/>
     </settings>
     <!-- 环境 dev prod 等 -->
     <environments default="dev">
