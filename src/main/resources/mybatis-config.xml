@@ -7,6 +7,11 @@
     <settings>
         <!-- 不做缓存 -->
         <setting name="cacheEnabled" value="false"/>
+        <!-- 系统默认别名可在配置类Configuration里面看 -->
+        <!-- 可通过别名配置日志 或者 配置自定义日志实现，日志实现原理见 org.apache.ibatis.logging.LogFactory -->
+        <!-- 见README.md -->
+        <!--<setting name="logImpl" value="JDK_LOGGING"/>-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
     <!-- 环境 dev prod 等 -->
     <environments default="dev">
