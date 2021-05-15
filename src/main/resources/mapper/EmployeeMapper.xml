@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bing.lan.mybatis.mapper.EmployeeMapper">
+<mapper namespace="com.bing.lan.mybatis.mapper.xml.EmployeeMapper">
     <!--
     keyColumn: 数据库字段名
     keyProperty: 对象的字段名

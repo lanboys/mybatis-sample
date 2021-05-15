@@ -1,6 +1,7 @@
 package com.bing.lan.mybatis;
 
 import com.bing.lan.mybatis.entity.Employee;
+import com.bing.lan.mybatis.mapper.xml.EmployeeMapper;
 
 import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.io.Resources;
@@ -12,13 +13,13 @@ import org.junit.Test;
 
 import java.io.InputStream;
 
-public class SqlSessionTest {
+public class MapperInterfaceTest {
 
   @Test
   public void testSqlSession() {
     Employee employee = new Employee();
-    employee.setName("sqlSession");
-    employee.setPhone("123456789");
+    employee.setName("emp-name");
+    employee.setPhone("emp-phone");
     SqlSession sqlSession = null;
     try {
       InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-config.xml");
@@ -29,10 +30,15 @@ public class SqlSessionTest {
       // 手动提交
       sqlSession = factory.openSession(false);
       // 执行sql
-      sqlSession.insert("com.bing.lan.mybatis.mapper.xml.EmployeeMapper.save", employee);
-      //if (1 == 1) {
-      //  throw new RuntimeException("异常中断");
-      //}
+      //sqlSession.select("com.bing.lan.mybatis.mapper.xml.EmployeeMapper.limit", null);
+      EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+      Employee limit = mapper.limit();
+      System.out.println("testSqlSession(): " + limit);
+
+      //EmpMapper empMapper = sqlSession.getMapper(EmpMapper.class);
+      //List<Employee> list = empMapper.list();
+      //System.out.println("testSqlSession(): " + list);
+
       // 手动提交
       sqlSession.commit();
       sqlSession.close();

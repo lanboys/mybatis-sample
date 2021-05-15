@@ -34,6 +34,7 @@
 
     <mappers>
         <mapper resource="mapper/EmployeeMapper.xml"/>
+        <package name="com.bing.lan.mybatis.mapper.packagee"/>
     </mappers>
 
 </configuration>
