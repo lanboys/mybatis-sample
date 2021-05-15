@@ -30,9 +30,9 @@ public class SqlSessionTest {
       sqlSession = factory.openSession(false);
       // 执行sql
       sqlSession.insert("com.bing.lan.mybatis.mapper.EmployeeMapper.save", employee);
-      if (1 == 1) {
-        throw new RuntimeException("异常中断");
-      }
+      //if (1 == 1) {
+      //  throw new RuntimeException("异常中断");
+      //}
       // 手动提交
       sqlSession.commit();
       sqlSession.close();

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration debug="true">
+
+    <contextName>lanbing</contextName>
+
+    <property name="LOG_HOME" value="logs"/>
+
+    <property name="LOG_PATTERN"
+              value="[logger-logback1] %d{yyyy-MM-dd HH:mm:ss.SSS}, %msg%n"/>
+    <property name="NORMAL_PATTERN"
+              value="[logger-logback2] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level - %logger{100} - %msg%n"/>
+    <property name="SERIOUS_PATTERN"
+              value="[logger-logback3] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level - %-60.60class [%4line] - %msg%n"/>
+
+    <Appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <Layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${LOG_PATTERN}</Pattern>
+        </Layout>
+    </Appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/testFile.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_ALL" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/all.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>${NORMAL_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="SQL" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/sql.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Additivity is set to true by default, that is children inherit the-->
+    <!-- appenders of their ancestors by default. If this variable is set to-->
+    <!-- <code>false</code> then the appenders located in the ancestors of this-->
+    <!-- logger will not be used. However, the children of this logger will inherit-->
+    <!-- its appenders, unless the children have their additivity flag set to-->
+    <!-- <code>false</code> too. See the user manual for more details.-->
+
+    <!--
+         additivity 表示是否继承父 logger 的 appender, 如果继承，则自己的appender和
+         父 logger 的appender 一起打印，否则只打印自己的appender
+    -->
+
+    <ROOT level="INFO">
+        <Appender-ref ref="STDOUT"/>
+        <Appender-ref ref="FILE"/>
+    </ROOT>
+
+    <logger name="com.bing.lan.mybatis.mapper" additivity="false" level="TRACE">
+        <Appender-ref ref="STDOUT"/>
+        <Appender-ref ref="SQL"/>
+    </logger>
+
+</Configuration>
