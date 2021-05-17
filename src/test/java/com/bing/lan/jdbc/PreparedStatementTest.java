@@ -1,30 +1,29 @@
-package com.bing.lan.mybatis.jdbc;
+package com.bing.lan.jdbc;
 
 import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
  * Created by backend.
  */
 
-public class StatementTest {
+public class PreparedStatementTest {
 
   @Test
-  public void testStatement() {
+  public void testPreparedStatement() {
     Connection conn = null;
-    Statement stmt = null;
+    PreparedStatement stmt = null;
     ResultSet rs = null;
     try {
-      // DriverManager 中已经执行过Class.forName
-      //Class.forName("com.mysql.jdbc.Driver");
       conn = DriverManager.getConnection("jdbc:mysql://14.18.43.48:3306/jdbc?user=root&password=KHwl20170731!@#");
 
-      stmt = conn.createStatement();
-      rs = stmt.executeQuery("select * from employee");
+      stmt = conn.prepareStatement("select * from employee where name = ?");
+      stmt.setString(1, "meimei1");
+      rs = stmt.executeQuery();
       while (rs.next()) {
         System.out.println(rs.getString("name"));
       }

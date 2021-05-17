@@ -1,4 +1,4 @@
-package com.bing.lan.mybatis.jdbc;
+package com.bing.lan.jdbc;
 
 import org.junit.Test;
 

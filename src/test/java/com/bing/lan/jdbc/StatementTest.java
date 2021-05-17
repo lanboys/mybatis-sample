@@ -1,10 +1,9 @@
-package com.bing.lan.mybatis.jdbc;
-
-import com.bing.lan.mybatis.dataSource.UnpooledDataSource;
+package com.bing.lan.jdbc;
 
 import org.junit.Test;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -12,17 +11,17 @@ import java.sql.Statement;
  * Created by backend.
  */
 
-public class DataSourceTest {
+public class StatementTest {
 
   @Test
-  public void testDataSource() {
+  public void testStatement() {
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
     try {
-      UnpooledDataSource dataSource = new UnpooledDataSource("com.mysql.jdbc.Driver",
-          "jdbc:mysql://14.18.43.48:3306/jdbc", "root", "KHwl20170731!@#");
-      conn = dataSource.getConnection();
+      // DriverManager 中已经执行过Class.forName
+      //Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://14.18.43.48:3306/jdbc?user=root&password=KHwl20170731!@#");
 
       stmt = conn.createStatement();
       rs = stmt.executeQuery("select * from employee");

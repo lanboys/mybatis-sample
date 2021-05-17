@@ -1,29 +1,31 @@
-package com.bing.lan.mybatis.jdbc;
+package com.bing.lan.jdbc;
+
+import com.bing.lan.jdbc.dataSource.UnpooledDataSource;
 
 import org.junit.Test;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * Created by backend.
  */
 
-public class PreparedStatementTest {
+public class DataSourceTest {
 
   @Test
-  public void testPreparedStatement() {
+  public void testDataSource() {
     Connection conn = null;
-    PreparedStatement stmt = null;
+    Statement stmt = null;
     ResultSet rs = null;
     try {
-      conn = DriverManager.getConnection("jdbc:mysql://14.18.43.48:3306/jdbc?user=root&password=KHwl20170731!@#");
+      UnpooledDataSource dataSource = new UnpooledDataSource("com.mysql.jdbc.Driver",
+          "jdbc:mysql://14.18.43.48:3306/jdbc", "root", "KHwl20170731!@#");
+      conn = dataSource.getConnection();
 
-      stmt = conn.prepareStatement("select * from employee where name = ?");
-      stmt.setString(1, "meimei1");
-      rs = stmt.executeQuery();
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery("select * from employee");
       while (rs.next()) {
         System.out.println(rs.getString("name"));
       }

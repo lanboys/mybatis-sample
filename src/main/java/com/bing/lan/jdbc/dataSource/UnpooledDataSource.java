@@ -1,4 +1,4 @@
-package com.bing.lan.mybatis.dataSource;
+package com.bing.lan.jdbc.dataSource;
 
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -80,7 +80,6 @@ public class UnpooledDataSource implements DataSource {
   public Logger getParentLogger() {
     return Logger.getLogger("global");
   }
-
 
   public void setLogWriter(PrintWriter logWriter) throws SQLException {
     DriverManager.setLogWriter(logWriter);

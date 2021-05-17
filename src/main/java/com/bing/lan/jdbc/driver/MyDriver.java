@@ -1,4 +1,4 @@
-//package com.bing.lan.mybatis.driver;
+//package com.bing.lan.jdbc.driver;
 //
 //import java.sql.Connection;
 //import java.sql.DriverPropertyInfo;
