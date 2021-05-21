@@ -13,4 +13,8 @@
     <context:annotation-config/>
     <!--    设置扫描的包    -->
     <context:component-scan base-package="com.bing.lan.spring"/>
+
+    <!--    启用事务注解 Transactional 或者使用 @EnableTransactionManagement 开启  -->
+    <!--<tx:annotation-driven/>-->
+
 </beans>

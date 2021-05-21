@@ -2,14 +2,17 @@ package com.bing.lan.spring;
 
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.mybatis.spring.transaction.SpringManagedTransactionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -19,9 +22,13 @@ import javax.sql.DataSource;
  * 与 mybatis 中的mapper关联起来
  * <p>
  * EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+ * <p>
+ * <p>
+ * 通过注解 开始事务 看{@link EnableTransactionManagement}上方详细文档
  */
 
 @Configuration
+@EnableTransactionManagement
 @MapperScan("com.bing.lan.mybatis.mapper")
 public class MybatisSpringConfig {
 
@@ -42,7 +49,13 @@ public class MybatisSpringConfig {
   }
 
   @Bean
-  public JdbcTransactionFactory transactionFactory() {
-    return new JdbcTransactionFactory();
+  public SpringManagedTransactionFactory transactionFactory() {
+    // 一定要使用这个
+    return new SpringManagedTransactionFactory();
+  }
+
+  @Bean
+  public PlatformTransactionManager txManager() {
+    return new DataSourceTransactionManager(dataSource());
   }
 }
