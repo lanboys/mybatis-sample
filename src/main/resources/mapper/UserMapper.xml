@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bing.lan.mybatis.mapper.xml.UserMapper">
+    <!--
+    keyColumn: 数据库字段名
+    keyProperty: 对象的字段名
+    useGeneratedKeys: 是否将自动增长的key值 存到对象的字段中
+    -->
+    <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.bing.lan.mybatis.entity.User">
+        INSERT INTO user (name, phone) VALUES (#{name}, #{phone})
+    </insert>
+
+    <select id="list" resultType="com.bing.lan.mybatis.entity.User" >
+        select *
+        from user
+    </select>
+
+</mapper>

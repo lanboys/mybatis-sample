@@ -21,3 +21,12 @@ INSERT INTO `employee` VALUES ('2', 'meimei2', '1234567892');
 INSERT INTO `employee` VALUES ('3', 'meimei3', '1234567893');
 INSERT INTO `employee` VALUES ('4', 'meimei4', '1234567894');
 INSERT INTO `employee` VALUES ('5', 'meimei5', '1234567895');
+
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `name` varchar(50) NOT NULL,
+                            `phone` varchar(20) DEFAULT NULL,
+                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

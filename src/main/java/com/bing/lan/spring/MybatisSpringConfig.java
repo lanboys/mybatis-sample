@@ -25,6 +25,7 @@ import javax.sql.DataSource;
  * <p>
  * <p>
  * 通过注解 开始事务 看{@link EnableTransactionManagement}上方详细文档
+ * http://www.imooc.com/wiki/springbootlesson/transcation.html
  */
 
 @Configuration
