@@ -25,7 +25,7 @@ public class NestedTransactionTest extends AbstractJUnit4SpringContextTests {
 
   @Test
   public void nestedTransaction() {
-    employeeService.nestedTransaction();
+    employeeService.nestedTransaction(false);
     System.out.println("nestedTransaction(): ");
   }
 }

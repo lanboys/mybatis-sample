@@ -24,31 +24,31 @@ public class EmployeeServiceImpl implements EmployeeService {
   UserService userService;
 
   @Transactional(rollbackFor = Exception.class)
-  public void startTransaction() {
+  public void startTransaction(boolean throwException) {
     Employee employee = new Employee();
     employee.setName("sqlSession");
     employee.setPhone("1234567891");
 
     employeeMapper.save(employee);
     System.out.println("startTransaction()");
-    if (1 == 1) {
+    if (throwException) {
       throw new RuntimeException("error");
     }
     Employee limit1 = empMapper.limit();
     System.out.println("startTransaction(): " + limit1);
   }
 
-  public void wrapperTransaction() {
+  public void wrapperTransaction(boolean throwException) {
     Employee employee = new Employee();
     employee.setName("sqlSession");
     employee.setPhone("1234567892");
     // 内部调用事务是不会生效的，因为跳过了动态代理的逻辑，可以debug试试，是跟普通调用一样直接跳过去了
-    startTransaction();
+    startTransaction(throwException);
   }
 
   @Override
   @Transactional(rollbackFor = Exception.class)
-  public void nestedTransaction() {
+  public void nestedTransaction(boolean throwException) {
     Employee employee = new Employee();
     employee.setName("sqlSession");
     employee.setPhone("1234567891");
@@ -59,10 +59,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     User user = new User();
     user.setName("sqlSession");
     user.setPhone("1234567891");
-    userService.registerUser(user);
+    userService.registerUser(user, false);
     System.out.println("nestedTransaction()");
 
-    if (1 == 1) {
+    if (throwException) {
       throw new RuntimeException("nestedTransaction");
     }
   }

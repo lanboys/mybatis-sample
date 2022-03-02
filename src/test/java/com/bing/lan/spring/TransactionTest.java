@@ -22,13 +22,13 @@ public class TransactionTest extends AbstractJUnit4SpringContextTests {
 
   @Test
   public void startTransaction() {
-    employeeService.startTransaction();
+    employeeService.startTransaction(false);
     System.out.println("startTransaction(): ");
   }
 
   @Test
   public void wrapperTransaction() {
-    employeeService.wrapperTransaction();
+    employeeService.wrapperTransaction(false);
     System.out.println("wrapperTransaction(): ");
   }
 }

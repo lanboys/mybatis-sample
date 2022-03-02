@@ -6,6 +6,7 @@ import com.bing.lan.spring.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -14,10 +15,10 @@ public class UserServiceImpl implements UserService {
   @Autowired
   UserMapper userMapper;
 
-  @Transactional
-  public void registerUser(User user) {
+  @Transactional(propagation = Propagation.NOT_SUPPORTED)
+  public void registerUser(User user, boolean throwException) {
     userMapper.save(user);
-    if (1 == 1) {
+    if (throwException) {
       throw new RuntimeException("nestedTransaction");
     }
   }
